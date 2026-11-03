@@ -4,9 +4,11 @@
 
 # CTF 新手手册
 
+[![简体中文](https://img.shields.io/badge/简体中文-README-blue)](README.md) [![English](https://img.shields.io/badge/English-README-2ea44f)](README.en.md) [![日本語](https://img.shields.io/badge/日本語-README-red)](README.ja.md)
+
 面向 CTF 新手的系统化学习手册，从零开始，系统进阶。
 
-[站点](https://docs.sajunan.cn) · [密码学入门](https://docs.sajunan.cn/crypto/) · [问题反馈](https://github.com/NAN8991/docs.sajunan.cn/issues)
+[站点](https://docs.sajunan.cn) · [密码学入门](https://docs.sajunan.cn/crypto/) · [问题反馈](https://github.com/sajunan/docs.sajunan.cn/issues) · [English](README.en.md) · [日本語](README.ja.md)
 
 [![site](https://img.shields.io/badge/site-docs.sajunan.cn-2563eb)](https://docs.sajunan.cn)
 [![vitepress](https://img.shields.io/badge/VitePress-2.0.0--alpha.21-646cff)](https://vitepress.dev)
@@ -26,11 +28,11 @@
 |------|------|------|
 | [密码学 Crypto](https://docs.sajunan.cn/crypto/) | 古典密码、对称密码、RSA、ECC、哈希、协议、侧信道与后量子密码 | 已上线 |
 | [Web 安全](https://docs.sajunan.cn/web/) | SQL 注入、XSS、SSRF、SSTI、反序列化与认证绕过 | 建设中 |
-| [Pwn](https://docs.sajunan.cn/pwn/) | 栈溢出、格式化字符串、堆利用、ROP 与沙箱逃逸 | 建设中 |
-| [Reverse](https://docs.sajunan.cn/reverse/) | 静态分析、动态调试、脱壳与算法还原 | 建设中 |
-| [Misc](https://docs.sajunan.cn/misc/) | 编码、隐写、流量分析与综合技巧 | 建设中 |
-| [Forensics](https://docs.sajunan.cn/forensics/) | 磁盘、内存、日志与文件取证 | 建设中 |
-| [Blockchain](https://docs.sajunan.cn/blockchain/) | 智能合约漏洞、EVM 与链上安全 | 建设中 |
+| [Pwn 二进制利用](https://docs.sajunan.cn/pwn/) | 栈溢出、格式化字符串、堆利用、ROP 与沙箱逃逸 | 建设中 |
+| [Reverse 逆向工程](https://docs.sajunan.cn/reverse/) | 静态分析、动态调试、脱壳与算法还原 | 建设中 |
+| [Misc 杂项](https://docs.sajunan.cn/misc/) | 编码、隐写、流量分析与综合技巧 | 建设中 |
+| [取证 Forensics](https://docs.sajunan.cn/forensics/) | 磁盘、内存、日志与文件取证 | 建设中 |
+| [区块链 Blockchain](https://docs.sajunan.cn/blockchain/) | 智能合约漏洞、EVM 与链上安全 | 建设中 |
 | [AI 安全](https://docs.sajunan.cn/ai/) | 提示注入、越狱、对抗样本与 Agent 安全 | 建设中 |
 
 ## 技术栈
@@ -65,7 +67,7 @@ pnpm -v
 ### 2. 获取代码
 
 ```bash
-git clone https://github.com/NAN8991/docs.sajunan.cn.git
+git clone https://github.com/sajunan/docs.sajunan.cn.git
 cd docs.sajunan.cn
 ```
 
