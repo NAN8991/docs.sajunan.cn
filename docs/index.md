@@ -14,7 +14,7 @@ hero:
       link: /crypto/
     - theme: alt
       text: 项目仓库
-      link: https://github.com/NAN8991/docs.sajunan.cn
+      link: https://github.com/sajunan/docs.sajunan.cn
 
 features:
   - icon:
@@ -61,7 +61,7 @@ features:
       src: /icons/forensics.svg
       width: 24
       height: 24
-    title: Forensics 取证
+    title: 取证 Forensics
     details: 磁盘镜像、内存取证、日志分析与文件恢复，从留下的痕迹中还原事件经过。
     link: /forensics/
     linkText: 查看内容
@@ -69,7 +69,7 @@ features:
       src: /icons/blockchain.svg
       width: 24
       height: 24
-    title: Blockchain 区块链
+    title: 区块链 Blockchain
     details: 智能合约漏洞、EVM 执行模型、重入与权限绕过，理解链上资产与合约调用的安全边界。
     link: /blockchain/
     linkText: 查看内容

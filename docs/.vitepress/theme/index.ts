@@ -27,7 +27,7 @@ function printConsoleEgg() {
     'color:#2563eb;font-size:14px;font-weight:600;'
   )
   console.log(
-    '%c技术栈 : VitePress + Vue 3\n仓库   : https://github.com/NAN8991/docs.sajunan.cn\n协议   : MIT',
+    '%c技术栈 : VitePress + Vue 3\n仓库   : https://github.com/sajunan/docs.sajunan.cn\n协议   : MIT',
     'color:#64748b;font-size:12px;line-height:1.6;'
   )
   console.log(
