@@ -1,0 +1,7 @@
+User-agent: *
+Content-Signal: search=yes, ai-train=yes, ai-input=yes
+Disallow:
+
+Sitemap: https://docs.sajunan.cn/sitemap.xml
+
+# Easter egg: flag{54GM5rOo5aGU6I+y6LCi6LCi5Za1}
