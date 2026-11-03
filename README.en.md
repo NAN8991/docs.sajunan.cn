@@ -132,6 +132,7 @@ Cloudflare Pages, Vercel or a self-hosted server can use the same build command 
 | `docs/crypto/` | Crypto articles |
 | `docs/web/`, `docs/pwn/`, ... | Other CTF categories |
 | `docs/en/` | English site content |
+| `docs/ja/` | Japanese site content |
 | `src/` | VitePress source and default theme |
 | `scripts/` | Build and type-generation scripts |
 | `types/` | TypeScript declarations |

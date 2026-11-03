@@ -136,6 +136,7 @@ Cloudflare Pages、Vercel、または自前のサーバーを使う場合も、�
 | `docs/crypto/` | 暗号分野の記事 |
 | `docs/web/`、`docs/pwn/` など | その他の CTF 分野 |
 | `docs/ja/` | 日本語サイトのコンテンツ |
+| `docs/en/` | 英語サイトのコンテンツ |
 | `src/` | VitePress のソースコードとデフォルトテーマ |
 | `scripts/` | ビルドや型生成などのスクリプト |
 | `types/` | TypeScript の型宣言 |

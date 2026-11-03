@@ -135,6 +135,8 @@ pnpm -F=docs preview
 | `docs/public/` | 图片、字体、备案图标等静态资源 |
 | `docs/crypto/` | 密码学方向文章 |
 | `docs/web/`、`docs/pwn/` 等 | 其他 CTF 方向 |
+| `docs/en/` | 英文站点内容 |
+| `docs/ja/` | 日文站点内容 |
 | `src/` | VitePress 源码与默认主题 |
 | `scripts/` | 构建、生成类型等脚本 |
 | `types/` | TypeScript 类型声明 |
