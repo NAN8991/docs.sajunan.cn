@@ -1,0 +1,22 @@
+[build.environment]
+NODE_VERSION = "24"
+PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
+
+[build]
+publish = "docs/.vitepress/dist"
+command = "pnpm tsdown && pnpm -F=docs build"
+
+[[headers]]
+for = "/*"
+[headers.values]
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+for = "/assets/*"
+[headers.values]
+cache-control = '''
+    max-age=31536000,
+    immutable'''
