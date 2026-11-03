@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useData } from '../composables/data'
 
-const { theme, frontmatter } = useData()
+const { theme, frontmatter, lang } = useData()
+const isEnglish = computed(() => lang.value.startsWith('en'))
+const isJapanese = computed(() => lang.value.startsWith('ja'))
 </script>
 
 <template>
@@ -29,15 +32,27 @@ const { theme, frontmatter } = useData()
         </a>
       </p>
       <p class="message tech-row">
-        本站基于
-        <a
-          href="https://vitepress.dev/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          VitePress
-        </a>
-        构建
+        <template v-if="isJapanese">
+          <a
+            href="https://vitepress.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            VitePress
+          </a>
+          で構築
+        </template>
+        <template v-else>
+          <span>{{ isEnglish ? 'Built with' : '本站基于' }}</span>
+          <a
+            href="https://vitepress.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            VitePress
+          </a>
+          <span v-if="!isEnglish">构建</span>
+        </template>
         <span class="link-sep">|</span>
         <a href="https://blog.sajunan.cn/" target="_blank" rel="noopener noreferrer">Blog</a>
         <span class="link-sep">/</span>
