@@ -1,6 +1,6 @@
 ---
 title: AI 安全入门
-description: CTF AI 安全方向入门：模型攻击、提示注入与 AI 应用安全。
+description: CTF AI 安全方向入门指南：涵盖提示注入、越狱、对抗样本、模型提取与 Agent 安全，兼顾攻击模型与用 AI 辅助安全，内容持续更新。
 ---
 
 # AI 安全入门

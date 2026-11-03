@@ -20,6 +20,18 @@ function resolvePageUrl(relativePath: string) {
   return new URL(path, `${siteUrl}/`).href
 }
 
+function resolveLocaleUrls(relativePath: string) {
+  const path = relativePath
+    .replace(/^(en|ja)\//, '')
+    .replace(/(^|\/)index\.md$/, '$1')
+    .replace(/\.md$/, '')
+  return {
+    zh: new URL(path, `${siteUrl}/`).href,
+    en: new URL(`en/${path}`, `${siteUrl}/`).href,
+    ja: new URL(`ja/${path}`, `${siteUrl}/`).href
+  }
+}
+
 const enThemeConfig: DefaultTheme.Config = {
   nav: [
     { text: 'Home', link: '/en/' },
@@ -277,7 +289,6 @@ export default defineConfig({
           'CTF,CTF 新手手册,CTF Handbook,CTF ハンドブック,网络安全,密码学,cryptography,暗号学,Web 安全,web security,Pwn,Reverse,リバース,Misc,取证,forensics,フォレンジック,区块链,blockchain,ブロックチェーン,AI 安全,AI security,AI セキュリティ'
       }
     ],
-    ['meta', { name: 'robots', content: 'index, follow' }],
     [
       'meta',
       {
@@ -285,12 +296,10 @@ export default defineConfig({
         content: 'flag{54GM5rOo5aGU6I+y6LCi6LCi5Za1}'
       }
     ],
-    ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { property: 'og:image', content: `${siteUrl}/og.png` }],
     ['meta', { property: 'og:image:width', content: '1200' }],
     ['meta', { property: 'og:image:height', content: '630' }],
-    ['meta', { property: 'og:image:alt', content: siteTitle }],
     ['meta', { name: 'twitter:image', content: `${siteUrl}/og.png` }]
   ],
 
@@ -311,6 +320,12 @@ export default defineConfig({
   transformPageData(pageData) {
     const isEn = pageData.relativePath.startsWith('en/')
     const isJa = pageData.relativePath.startsWith('ja/')
+    const isHome =
+      pageData.relativePath === 'index.md' ||
+      pageData.relativePath === 'en/index.md' ||
+      pageData.relativePath === 'ja/index.md'
+    const isNotFound = pageData.relativePath === '404.md'
+    const isSecret = pageData.relativePath.includes('secret')
     const siteName = isEn ? siteTitleEn : isJa ? siteTitleJa : siteTitle
     const fallbackDescription = isEn
       ? siteDescriptionEn
@@ -320,13 +335,24 @@ export default defineConfig({
     const langCode = isEn ? 'en-US' : isJa ? 'ja-JP' : 'zh-CN'
     const ogLocale = isEn ? 'en_US' : isJa ? 'ja_JP' : 'zh_CN'
     const url = resolvePageUrl(pageData.relativePath)
+    const description = pageData.description || fallbackDescription
     const head = (pageData.frontmatter.head ??= []) as HeadConfig[]
+
+    if (isNotFound) {
+      head.push(['meta', { name: 'robots', content: 'noindex, nofollow' }])
+      return
+    }
 
     head.push(
       ['link', { rel: 'canonical', href: url }],
       ['meta', { property: 'og:url', content: url }],
+      [
+        'meta',
+        { property: 'og:type', content: isHome ? 'website' : 'article' }
+      ],
       ['meta', { property: 'og:site_name', content: siteName }],
       ['meta', { property: 'og:locale', content: ogLocale }],
+      ['meta', { property: 'og:image:alt', content: siteName }],
       [
         'meta',
         {
@@ -334,14 +360,24 @@ export default defineConfig({
           content: pageData.title ? `${pageData.title} | ${siteName}` : siteName
         }
       ],
-      [
-        'meta',
-        {
-          property: 'og:description',
-          content: pageData.description || fallbackDescription
-        }
-      ],
-      [
+      ['meta', { property: 'og:description', content: description }]
+    )
+
+    if (!isSecret) {
+      const alternates = resolveLocaleUrls(pageData.relativePath)
+      head.push(
+        ['link', { rel: 'alternate', hreflang: 'zh-CN', href: alternates.zh }],
+        ['link', { rel: 'alternate', hreflang: 'en-US', href: alternates.en }],
+        ['link', { rel: 'alternate', hreflang: 'ja-JP', href: alternates.ja }],
+        [
+          'link',
+          { rel: 'alternate', hreflang: 'x-default', href: alternates.zh }
+        ]
+      )
+    }
+
+    if (isHome) {
+      head.push([
         'script',
         { type: 'application/ld+json' },
         JSON.stringify({
@@ -352,8 +388,58 @@ export default defineConfig({
           description: fallbackDescription,
           inLanguage: langCode
         })
+      ])
+      return
+    }
+
+    const homeUrl = isEn
+      ? `${siteUrl}/en/`
+      : isJa
+        ? `${siteUrl}/ja/`
+        : `${siteUrl}/`
+    const homeLabel = isEn ? 'Home' : isJa ? 'ホーム' : '首页'
+    const article = {
+      '@type': 'TechArticle',
+      headline: pageData.title || siteName,
+      description,
+      inLanguage: langCode,
+      url,
+      mainEntityOfPage: url,
+      isPartOf: { '@type': 'WebSite', name: siteName, url: siteUrl },
+      ...(pageData.lastUpdated
+        ? { dateModified: new Date(pageData.lastUpdated).toISOString() }
+        : {})
+    }
+    const breadcrumb = {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: homeLabel, item: homeUrl },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: pageData.title || siteName,
+          item: url
+        }
       ]
-    )
+    }
+
+    head.push([
+      'script',
+      { type: 'application/ld+json' },
+      JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [article, breadcrumb]
+      })
+    ])
+  },
+
+  transformHtml(code, _id, ctx) {
+    if (ctx.page === '404.md' || ctx.page === '404.html') {
+      return code.replace(
+        '</head>',
+        '<meta name="robots" content="noindex, nofollow"></head>'
+      )
+    }
   },
 
   themeConfig: {

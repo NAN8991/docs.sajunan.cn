@@ -1,6 +1,6 @@
 ---
 title: 密码学入门
-description: CTF Crypto 万能手册，从古典密码到 RSA、ECC、格密码与后量子密码的攻击手段全收录。
+description: CTF Crypto 万能手册：从古典密码到对称与公钥密码、RSA、ECC、格密码、哈希、协议、侧信道与后量子密码的攻击手段全收录。
 ---
 
 # 密码学入门

@@ -1,6 +1,6 @@
 ---
 title: Web 入门
-description: CTF Web 方向入门：常见漏洞原理、利用方式与防御思路。
+description: CTF Web 方向入门指南：覆盖 SQL 注入、XSS、SSRF、SSTI、反序列化与认证绕过等常见漏洞的原理、利用方式与防御思路，内容持续更新。
 ---
 
 # Web 入门

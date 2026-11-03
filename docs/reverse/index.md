@@ -1,6 +1,6 @@
 ---
 title: Reverse 入门
-description: CTF Reverse 方向入门：逆向分析方法与常见算法还原。
+description: CTF Reverse 方向入门指南：从静态分析、动态调试到脱壳与算法还原，讲解逆向工程的基本流程、常用工具与实战思路，内容持续更新。
 ---
 
 # Reverse 入门

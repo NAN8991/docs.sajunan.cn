@@ -1,6 +1,6 @@
 ---
 title: Misc 入门
-description: CTF Misc 方向入门：编码、隐写、流量分析与综合技巧。
+description: CTF Misc 方向入门指南：涵盖编码转换、隐写分析、流量取证与综合技巧，帮助你应对最灵活的一类赛题，内容持续更新。
 ---
 
 # Misc 入门

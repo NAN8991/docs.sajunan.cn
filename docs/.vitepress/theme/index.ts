@@ -73,13 +73,20 @@ function bindKonamiCode() {
       index++
       if (index === konamiSequence.length) {
         index = 0
+        const pathname = window.location.pathname
+        const prefix = pathname.startsWith('/en/')
+          ? '/en'
+          : pathname.startsWith('/ja/')
+            ? '/ja'
+            : ''
+        const secretPath = `${prefix}/secret/`
         console.log(
-          '%cKonami Code 已触发！正在前往隐藏页面 /secret/ ...',
+          `%cKonami Code 已触发！正在前往隐藏页面 ${secretPath} ...`,
           'color:#22c55e;font-size:14px;font-weight:700;'
         )
         window.setTimeout(() => {
-          if (!window.location.pathname.startsWith('/secret')) {
-            window.location.href = '/secret/'
+          if (!window.location.pathname.startsWith(secretPath)) {
+            window.location.href = secretPath
           }
         }, 800)
       }

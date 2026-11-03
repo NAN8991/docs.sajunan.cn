@@ -1,6 +1,6 @@
 ---
 title: Pwn 入门
-description: CTF Pwn 方向入门：二进制漏洞原理与利用技术。
+description: CTF Pwn 方向入门指南：从栈溢出、格式化字符串到堆利用与 ROP，讲解二进制漏洞成因、利用链构造与沙箱逃逸，内容持续更新。
 ---
 
 # Pwn 入门
