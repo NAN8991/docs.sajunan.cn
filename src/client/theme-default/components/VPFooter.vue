@@ -57,9 +57,10 @@ const isJapanese = computed(() => lang.value.startsWith('ja'))
         <a href="https://blog.sajunan.cn/" target="_blank" rel="noopener noreferrer">Blog</a>
         <span class="link-sep">/</span>
         <a href="https://docs.sajunan.cn/" target="_blank" rel="noopener noreferrer">Docs</a>
-      </p>
-      <p v-if="theme.footer?.copyright" class="copyright">
-        <bdi v-html="theme.footer.copyright" />
+        <template v-if="theme.footer?.copyright">
+          <span class="link-sep">|</span>
+          <bdi v-html="theme.footer.copyright" />
+        </template>
       </p>
     </div>
   </footer>
