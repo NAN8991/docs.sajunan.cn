@@ -43,3 +43,8 @@ jobs:
 
       - name: Build docs
         run: pnpm -F=docs build
+
+      - name: Submit IndexNow
+        if: github.event_name == 'push'
+        continue-on-error: true
+        run: pnpm indexnow
