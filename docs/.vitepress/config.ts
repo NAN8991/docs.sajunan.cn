@@ -405,6 +405,11 @@ export default defineConfig({
       inLanguage: langCode,
       url,
       mainEntityOfPage: url,
+      author: {
+        '@type': 'Person',
+        name: 'Inui Sajuna',
+        url: siteUrl
+      },
       isPartOf: { '@type': 'WebSite', name: siteName, url: siteUrl },
       ...(pageData.lastUpdated
         ? { dateModified: new Date(pageData.lastUpdated).toISOString() }
